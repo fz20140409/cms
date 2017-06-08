@@ -28,15 +28,28 @@
 
 <div class="container">
 
-    <form class="form-signin">
+    <form class="form-signin" action="{{route('admin_session_login')}}" method="post">
+        {{csrf_field()}}
+        @include('admin.layouts._alert_session')
         <h2 class="form-signin-heading">后台登录</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input name="email" value="{{old('email')}}" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+        @if($errors->has('email'))
+         @component('component._alert',['type'=>'danger'])
+            {{$errors->first('email')}}
+         @endcomponent
+        @endif
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="password" value="{{old('password')}}" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        @if($errors->has('password'))
+            @component('component._alert',['type'=>'danger'])
+            {{$errors->first('password')}}
+            @endcomponent
+        @endif
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input name="remember" type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
