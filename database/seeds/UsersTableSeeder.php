@@ -14,6 +14,13 @@ class UsersTableSeeder extends Seeder
         //
         $users = factory(User::class)->times(50)->make();
         User::insert($users->toArray());
+        $user=User::find(1);
+        $user->name='fqy';
+        $user->email='3040722030@qq.com';
+        $user->password=bcrypt('admin888');
+        $user->save();
+
+
 
     }
 }

@@ -2,17 +2,16 @@
 {{--@section('css')
     <link rel="stylesheet" href="/plugins/iCheck/all.css">
     @endsection--}}
-{{--@section('js')
-    <script src="/plugins/iCheck/icheck.min.js"></script>
-    <script>
+@section('js')
+    {{--<script src="/plugins/iCheck/icheck.min.js"></script>--}}
+    {{--<script>--}}
 
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-            checkboxClass: 'icheckbox_minimal-red',
-            radioClass: 'iradio_minimal-red'
-        });
-    </script>
-
-@endsection--}}
+        {{--$('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({--}}
+            {{--checkboxClass: 'icheckbox_minimal-red',--}}
+            {{--radioClass: 'iradio_minimal-red'--}}
+        {{--});--}}
+    {{--</script>--}}
+@endsection
 @section('content')
     <div class="row">
         <div class="col-xs-12">
@@ -31,52 +30,9 @@
                            <button type="submit" class="btn btn-default">查询</button>
                        </form>
                    </div>--}}
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">新增菜单</h4>
-                                </div>
-                                <div class="modal-body">
 
-                                        <form class="form-horizontal">
-                                            <div class="box-body">
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
-                                                    <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-
-                                                    <div class="col-sm-10">
-                                                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="box-footer">
-                                                <button type="submit" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                <button type="submit" class="btn btn-info pull-right">保存</button>
-                                            </div>
-
-                                        </form>
-
-                                </div>
-                                {{--<div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>--}}
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-xs-offset-10 col-xs-2">
                         <a href="{{route('menu.create')}}" class="btn btn-primary">增加</a>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                            增加
-                        </button>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -100,7 +56,7 @@
                                 <td>{{$menu['icon']}}</td>
                                 <td>{{$menu['sort']}}</td>
                                 <td>
-                                    <a class="btn btn-primary">添加子菜单</a><a class="btn btn-primary">修改</a>
+                                    <a class="btn btn-primary">添加子菜单</a><a href="{{route('menu.edit',['id'=>$menu['id']])}}" class="btn btn-primary">修改</a>
                                 </td>
 
                             </tr>

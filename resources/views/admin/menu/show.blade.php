@@ -15,8 +15,8 @@
                             <div class="col-sm-8">
                                 <select name="pid" id="pid" class="form-control">
                                     <option value="0">作为一级菜单</option>
-                                    @foreach($menus as $menu)
-                                        <option value="{{$menu['id']}}">{{$menu['name']}}</option>
+                                    @foreach($menus as $v)
+                                        <option value="{{$v['id']}}">{{$v['name']}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">菜单名</label>
                             <div class="col-sm-8" >
-                                <input name="name" type="text" class="form-control" id="name" placeholder="菜单名" value="{{old('name')}}">
+                                <input name="name" type="text" class="form-control" id="name" placeholder="菜单名" value="@if($id)@endif{{old('name')}}">
                                 @if($errors->has('name'))
                                     @component('component._alert',['type'=>'warning'])
                                     {{$errors->first('name')}}
@@ -73,7 +73,7 @@
                             <label class="col-sm-2 control-label">是否显示</label>
                             <div class="col-sm-8">
                                 <label class="radio-inline">
-                                    <input checked type="radio" name="ishow" id="inlineRadio1" value="1"> 是
+                                    <input  checked  type="radio" name="ishow" id="inlineRadio1" value="1"> 是
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="ishow" id="inlineRadio2" value="0"> 否

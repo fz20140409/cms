@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Tools\Tree;
 use App\Menu;
+use App\User;
 use Illuminate\Http\Request;
 
 class MenuController extends BaseController
@@ -23,30 +24,40 @@ class MenuController extends BaseController
         $menus = Tree::createTree($menus, 0, '&nbsp;&nbsp;');
         return view('admin/menu/show', compact('menus'));
     }
-    function store(Request $request){
-        $this->validate($request,[
-            'pid'=>'required',
-            'name'=>'required',
-            'route'=>'required',
-            'sort'=>'nullable|integer',
+
+    function store(Request $request)
+    {
+        $this->validate($request, [
+            'pid' => 'required',
+            'name' => 'required',
+            'route' => 'required',
+            'sort' => 'nullable|integer',
         ]);
-        $menu=Menu::create([
-            'pid'=>$request->pid,
-            'name'=>$request->name,
-            'route'=>$request->route,
-            'ishow'=>$request->ishow,
-            'icon'=>$request->icon,
-            'sort'=>$request->sort,
+        $menu = Menu::create([
+            'pid' => $request->pid,
+            'name' => $request->name,
+            'route' => $request->route,
+            'ishow' => $request->ishow,
+            'icon' => $request->icon,
+            'sort' => $request->sort,
         ]);
-        if($menu){
-            session()->flash('success','添加成功');
+        if ($menu) {
+            session()->flash('success', '添加成功');
             return redirect()->back();
-        }else{
-            session()->flash('danger','添加失败');
+        } else {
+            session()->flash('danger', '添加失败');
             return redirect()->back()->withInput();
         }
 
 
+    }
+
+    function edit($id)
+    {
+        $menu = Menu::find($id);
+        $menus = Menu::all()->toArray();
+        $menus = Tree::createTree($menus, 0, '&nbsp;&nbsp;');
+        return view('admin/menu/show', compact('menus', 'menu', 'id'));
     }
 
 }
